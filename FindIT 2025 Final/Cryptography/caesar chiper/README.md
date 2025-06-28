@@ -8,7 +8,7 @@ Diberikan sebuah file berisi chipertext, dimana saya perlu mendeskripsikan chipe
 
 # Analisis #
 
-Setelah dianalisis, untuk mendapatkan flag nya saya cukup mengcopy bagian akhirnya saja karena sudah terlihat jelas itu sesuai dengan format flagnya.
+Setelah dianalisis, untuk mendapatkan flag nya saya cukup meng copy bagian akhirnya saja karena sudah terlihat jelas itu sesuai dengan format flagnya.
 
 # Solusi #
 
