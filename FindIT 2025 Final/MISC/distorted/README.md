@@ -1,17 +1,21 @@
 # Soal disorted #
+
 ![Soal](disorted.png)
 
 # Deskripsi #
 
 Diberikan sebuah file berisi chipertext, dimana saya perlu mendeskripsikan chipertext tersebut untuk mendapatkan flagnya.
+
 ![loc](location.png)
 
 # Analisis #
 
 Untuk melakukan analisis lebih lanjut tentunya kita perlu memperbaiki foto tersebut agar kembali menjadi normal. Setelah itu, kita bisa lanjut melakukan pencarian dimana lokasi itu berada dan kita perlu mendapatkan titik koordinat dan nama tempatnya, kemudian menuliskannya sesuai format flag.
+
 # Solusi #
 
 Untuk memperbaiki foto yang sudah didistorsi, kita bisa menggunakan script python seperti ini.
+
 ```
 from PIL import Image
 import numpy as np
@@ -33,6 +37,7 @@ fixed_img = Image.fromarray(pixels)
 fixed_img.save("fixed_image.png")
 fixed_img.show()
 ```
+
 setelah itu, foto yang ditampilkan akan seperti ini.
 
 ![fix](fixed_image.png)
