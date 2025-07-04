@@ -34,7 +34,9 @@ fixed_img.save("fixed_image.png")
 fixed_img.show()
 ```
 setelah itu, foto yang ditampilkan akan seperti ini.
+
 ![fix](fixed_image.png)
+
 Kita bisa langsung mendapatkan lokasi tempat tersebut menggunakan google lens, kemudian diketahuilah bahwa tempat tersebut berlokasi di Gereja Bethany Nginden. Setelah itu, saya menggunakan google maps untuk mengetahui titik koordinatnya dan didapatkanlah -7.306955671262183, 112.77254941881688 tapi sesuai formatnya kita hanya perlu mengambil 4 angka dibelakang koma dan nama lokasinya sesuai yang tertera di google (case sensitive). Maka dari sana kita sudah bisa mendapatkan flagnya.
 
 # Flag #
