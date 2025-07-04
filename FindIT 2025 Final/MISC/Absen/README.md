@@ -3,6 +3,7 @@
 
 # Deskripsi 
 Untuk mendapatkan flagnya kita cukup mencopy flagnya yang sudah diumumkan di discord karena ini adalah free flag.
+
 ![discord](discord.png)
 
 # Flag #
