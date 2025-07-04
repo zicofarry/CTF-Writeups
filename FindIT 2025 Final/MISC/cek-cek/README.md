@@ -1,4 +1,5 @@
 # Soal cek-cek #
+
 ![Soal](cek-cek.png)
 
 # Deskripsi #
@@ -12,6 +13,7 @@ Untuk mendapatkan flagnya kita bisa membuka file flag.txt nya saja di direktori 
 # Solusi #
 
 Sebelum melakukan analisis pada hashnya, saya mencoba cara yang lebih sederhana terlebih dahulu, yaitu membuka file-file yang ada di direktori tersebut dengan query **/proc/self/fd/** siapa tau flagnya akan bisa langsung didapatkan dengan cara itu, dan setelah 5 kali percobaan ternyata saya bisa langsung mendapatkan flagnya (hoki menn pake ilmu dukun).
+
 ![jawaban](ans.png)
 
 # Flag #
