@@ -1,6 +1,6 @@
 # Soal caesar chiper #
-# ![Soal](caesar%20cipher.png)
-> <img width="616" height="740" alt="Image" src="https://github.com/user-attachments/assets/9dfc5e57-6117-4d71-b045-b8311abb5522" />
+
+<img width="616" height="740" alt="Image" src="https://github.com/user-attachments/assets/9dfc5e57-6117-4d71-b045-b8311abb5522" />
 
 # Deskripsi #
 
