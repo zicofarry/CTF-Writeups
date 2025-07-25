@@ -1,6 +1,6 @@
-# Soal Dictionary #
-![Soal](Dictionary.png)
-
+# Soal Laporan Eldas #
+![Soal]("https://github.com/user-attachments/assets/0a64b43d-4962-4942-aa41-a5612bd20ff9")
+<img width="454" height="676" alt="Image" src="https://github.com/user-attachments/assets/0a64b43d-4962-4942-aa41-a5612bd20ff9" />
 # Deskripsi #
 
 Diberikan attachment berupa file chall yang katanya punya bahasa aneh dan kita perlu membuat kamus untuk memecahkan masalahnya.
