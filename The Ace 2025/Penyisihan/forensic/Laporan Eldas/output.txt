@@ -1,0 +1,285 @@
+olevba 0.60.2 on Python 3.13.3 - http://decalage.info/python/oletools
+===============================================================================
+FILE: LAPORAN_AKHIR_ELDAS24_KELOMPOK_50.dotm
+Type: OpenXML
+WARNING  For now, VBA stomping cannot be detected for files in memory
+-------------------------------------------------------------------------------
+VBA MACRO ThisDocument.cls 
+in file: word/vbaProject.bin - OLE stream: 'VBA/ThisDocument'
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Sub AutoOpen()
+    Dim a1 As String
+    Dim a2 As Variant
+    Dim b1, b2, b3, b4, b5, b6 As Integer
+    Dim c1, c2, c3, c4, c5, c6, c7, c8 As String
+    Dim cipher1, cipher2, cipher3, cipher4, cipher5, cipher6 As String
+    Dim buffer As String
+
+    a1 = DecryptXorString("EGA", Array(4, 4, 4))
+    a2 = Array(91, 34, 56)
+
+    b1 = 104: b2 = 105: b3 = 100: b4 = 100: b5 = 101: b6 = 110
+
+    c1 = DecryptRot13Hex("7a6e7976706866")
+    c2 = XorHex("636f6465", 0)
+    c3 = StrReverse(HexToString("6e69"))
+    c4 = DecryptCaesarHex("746865", 0)
+    c5 = ConcatHex("77", "6f", "72", "64")
+    c6 = DecryptXorHex("66696c65", 0)
+    c7 = HexToString("6973")
+    c8 = DecryptBase64Hex("YmFk")
+
+    cipher1 = Base64Decode("aW4=")
+    cipher2 = XorCipher("`gclj}lm", 9)
+    cipher3 = StrReverse("etalpmet")
+    cipher4 = DecryptVigenere("ttmgiirkrg", "ace")
+    cipher5 = Chr(97) & Chr(110)
+    cipher6 = DecryptAtbash("zggzxp")
+
+    buffer = a1
+    buffer = buffer & Chr(a2(0) + 32)
+
+    Dim i As Integer
+    For i = 1 To 6
+        buffer = buffer & Chr(Choose(i, b1, b2, b3, b4, b5, b6))
+    Next i
+
+    buffer = buffer & Chr(95)
+    buffer = buffer & c1 & Chr(95) & c2 & Chr(95) & c3 & Chr(95) & c4 & Chr(95) & c5 & Chr(95) & c6 & Chr(95) & c7 & Chr(95) & c8 & Chr(95)
+    buffer = buffer & cipher1 & Chr(95) & cipher2 & Chr(95) & cipher3 & Chr(95) & cipher4 & Chr(95) & cipher5 & Chr(95) & cipher6 & "}"
+
+    WriteToRegistry buffer
+End Sub
+
+Function DecryptXorString(text As String, keys As Variant) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 1 To Len(text)
+        result = result & Chr(Asc(Mid(text, i, 1)) Xor keys(i - 1))
+    Next i
+    DecryptXorString = result
+End Function
+
+Function DecryptRot13Hex(hexStr As String) As String
+    Dim decoded As String
+    decoded = HexToString(hexStr)
+    DecryptRot13Hex = ROT13(decoded)
+End Function
+
+Function ROT13(text As String) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 1 To Len(text)
+        Dim c As String
+        c = Mid(text, i, 1)
+        If c >= "a" And c <= "m" Then
+            result = result & Chr(Asc(c) + 13)
+        ElseIf c >= "n" And c <= "z" Then
+            result = result & Chr(Asc(c) - 13)
+        ElseIf c >= "A" And c <= "M" Then
+            result = result & Chr(Asc(c) + 13)
+        ElseIf c >= "N" And c <= "Z" Then
+            result = result & Chr(Asc(c) - 13)
+        Else
+            result = result & c
+        End If
+    Next i
+    ROT13 = result
+End Function
+
+Function XorHex(hexStr As String, key As Integer) As String
+    If key = 0 Then
+        XorHex = HexToString(hexStr)
+    Else
+        Dim decoded As String
+        decoded = HexToString(hexStr)
+        XorHex = XorString(decoded, key)
+    End If
+End Function
+
+Function DecryptCaesarHex(hexStr As String, shift As Integer) As String
+    Dim decoded As String
+    decoded = HexToString(hexStr)
+    If shift = 0 Then
+        DecryptCaesarHex = decoded
+    Else
+        DecryptCaesarHex = CaesarCipher(decoded, shift)
+    End If
+End Function
+
+Function CaesarCipher(text As String, shift As Integer) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 1 To Len(text)
+        Dim c As String
+        c = Mid(text, i, 1)
+        If c >= "a" And c <= "z" Then
+            result = result & Chr(((Asc(c) - Asc("a") - shift + 26) Mod 26) + Asc("a"))
+        ElseIf c >= "A" And c <= "Z" Then
+            result = result & Chr(((Asc(c) - Asc("A") - shift + 26) Mod 26) + Asc("A"))
+        Else
+            result = result & c
+        End If
+    Next i
+    CaesarCipher = result
+End Function
+
+Function ConcatHex(ParamArray hexChars() As Variant) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 0 To UBound(hexChars)
+        result = result & HexToString(hexChars(i))
+    Next i
+    ConcatHex = result
+End Function
+
+Function DecryptXorHex(hexStr As String, key As Integer) As String
+    If key = 0 Then
+        DecryptXorHex = HexToString(hexStr)
+    Else
+        Dim decoded As String
+        decoded = HexToString(hexStr)
+        DecryptXorHex = XorString(decoded, key)
+    End If
+End Function
+
+Function DecryptBase64Hex(b64Str As String) As String
+    DecryptBase64Hex = Base64Decode(b64Str)
+End Function
+
+Function Base64Decode(b64Str As String) As String
+    Dim chars As String
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    Dim result As String
+    Dim i As Integer
+    Dim val As Long
+    Dim bits As Integer
+    For i = 1 To Len(b64Str)
+        Dim c As String
+        c = Mid(b64Str, i, 1)
+        If c = "=" Then Exit For
+        val = val * 64 + (InStr(chars, c) - 1)
+        bits = bits + 6
+        If bits >= 8 Then
+            result = result & Chr((val \ (2 ^ (bits - 8))) And 255)
+            bits = bits - 8
+        End If
+    Next i
+    Base64Decode = result
+End Function
+
+Function XorCipher(text As String, key As Integer) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 1 To Len(text)
+        result = result & Chr(Asc(Mid(text, i, 1)) Xor key)
+    Next i
+    XorCipher = result
+End Function
+
+Function DecryptVigenere(text As String, key As String) As String
+    Dim result As String
+    Dim i As Integer
+    Dim keyIndex As Integer
+    keyIndex = 1
+    For i = 1 To Len(text)
+        Dim c As String
+        c = Mid(text, i, 1)
+        If c >= "a" And c <= "z" Then
+            Dim shift As Integer
+            shift = Asc(Mid(key, keyIndex, 1)) - Asc("a")
+            result = result & Chr(((Asc(c) - Asc("a") - shift + 26) Mod 26) + Asc("a"))
+            keyIndex = keyIndex + 1
+            If keyIndex > Len(key) Then keyIndex = 1
+        ElseIf c >= "A" And c <= "Z" Then
+            Dim shift As Integer
+            shift = Asc(Mid(key, keyIndex, 1)) - Asc("A")
+            result = result & Chr(((Asc(c) - Asc("A") - shift + 26) Mod 26) + Asc("A"))
+            keyIndex = keyIndex + 1
+            If keyIndex > Len(key) Then keyIndex = 1
+        Else
+            result = result & c
+        End If
+    Next i
+    DecryptVigenere = result
+End Function
+
+Function DecryptAtbash(text As String) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 1 To Len(text)
+        Dim c As String
+        c = Mid(text, i, 1)
+        If c >= "a" And c <= "z" Then
+            result = result & Chr(Asc("z") - (Asc(c) - Asc("a")))
+        ElseIf c >= "A" And c <= "Z" Then
+            result = result & Chr(Asc("Z") - (Asc(c) - Asc("A")))
+        Else
+            result = result & c
+        End If
+    Next i
+    DecryptAtbash = result
+End Function
+
+Function HexToString(hexStr As String) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 1 To Len(hexStr) Step 2
+        result = result & Chr(CLng("&H" & Mid(hexStr, i, 2)))
+    Next i
+    HexToString = result
+End Function
+
+Function XorString(text As String, key As Integer) As String
+    Dim result As String
+    Dim i As Integer
+    For i = 1 To Len(text)
+        result = result & Chr(Asc(Mid(text, i, 1)) Xor key)
+    Next i
+    XorString = result
+End Function
+
+Function WriteToRegistry(data As String) As Boolean
+    Dim objShell As Object
+    On Error Resume Next
+    Set objShell = CreateObject("WScript.Shell")
+    If Not objShell Is Nothing Then
+        objShell.RegWrite "HKEY_CURRENT_USER\Software\Microsoft\Office\Common\Flag", data, "REG_SZ"
+        WriteToRegistry = True
+    Else
+        WriteToRegistry = False
+    End If
+End Function
+
++----------+--------------------+---------------------------------------------+
+|Type      |Keyword             |Description                                  |
++----------+--------------------+---------------------------------------------+
+|AutoExec  |AutoOpen            |Runs when the Word document is opened        |
+|Suspicious|Shell               |May run an executable file or a system       |
+|          |                    |command                                      |
+|Suspicious|WScript.Shell       |May run an executable file or a system       |
+|          |                    |command                                      |
+|Suspicious|CreateObject        |May create an OLE object                     |
+|Suspicious|Chr                 |May attempt to obfuscate specific strings    |
+|          |                    |(use option --deobf to deobfuscate)          |
+|Suspicious|StrReverse          |May attempt to obfuscate specific strings    |
+|          |                    |(use option --deobf to deobfuscate)          |
+|Suspicious|Xor                 |May attempt to obfuscate specific strings    |
+|          |                    |(use option --deobf to deobfuscate)          |
+|Suspicious|Hex Strings         |Hex-encoded strings were detected, may be    |
+|          |                    |used to obfuscate strings (option --decode to|
+|          |                    |see all)                                     |
+|Suspicious|Base64 Strings      |Base64-encoded strings were detected, may be |
+|          |                    |used to obfuscate strings (option --decode to|
+|          |                    |see all)                                     |
+|Hex String|znyvphf             |7a6e7976706866                               |
+|Hex String|code                |636f6465                                     |
+|Hex String|file                |66696c65                                     |
+|Base64    |bad                 |YmFk                                         |
+|String    |                    |                                             |
+|Suspicious|VBA Stomping        |VBA Stomping was detected: the VBA source    |
+|          |                    |code and P-code are different, this may have |
+|          |                    |been used to hide malicious code             |
++----------+--------------------+---------------------------------------------+
+VBA Stomping detection is experimental: please report any false positive/negative at https://github.com/decalage2/oletools/issues
+
