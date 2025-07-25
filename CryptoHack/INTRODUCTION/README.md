@@ -5,10 +5,10 @@ crypto{y0ur_f1rst_fl4g}
 
 # Great Snakes
 ```
-crypto{y0ur_f1rst_fl4g}
+crypto{z3n_0f_pyth0n}
 ```
 
 # Network Attacks
 ```
-crypto{y0ur_f1rst_fl4g}
+crypto{sh0pp1ng_f0r_fl4g5}
 ```
