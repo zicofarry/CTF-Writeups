@@ -10,7 +10,7 @@ crypto{biclique}
 
 # Structure of AES
 ```
-
+crypto{inmatrix}
 ```
 
 # Round Keys
@@ -25,10 +25,10 @@ crypto{l1n34rly}
 
 # Diffusion through Permutation
 ```
-
+crypto{d1ffUs3R}
 ```
 
 # Bringing It All Together
 ```
-
+crypto{MYAES128}
 ```

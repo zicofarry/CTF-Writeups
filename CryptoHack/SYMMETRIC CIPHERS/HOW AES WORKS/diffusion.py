@@ -5,7 +5,9 @@ def shift_rows(s):
 
 
 def inv_shift_rows(s):
-    ???
+    s[0][1], s[1][1], s[2][1], s[3][1] = s[3][1], s[0][1], s[1][1], s[2][1]
+    s[0][2], s[1][2], s[2][2], s[3][2] = s[2][2], s[3][2], s[0][2], s[1][2]
+    s[0][3], s[1][3], s[2][3], s[3][3] = s[1][3], s[2][3], s[3][3], s[0][3]
 
 
 # learned from http://cs.ucsb.edu/~koc/cs178/projects/JT/aes.c
@@ -39,6 +41,9 @@ def inv_mix_columns(s):
 
     mix_columns(s)
 
+def matrix2bytes(matrix):
+    """ Converts a 4x4 matrix into a 16-byte array.  """
+    return bytes(sum(matrix, []))
 
 state = [
     [108, 106, 71, 86],
@@ -47,3 +52,7 @@ state = [
     [94, 79, 8, 54],
 ]
 
+inv_mix_columns(state)
+inv_shift_rows(state)
+print(matrix2bytes(state))
+# crypto{d1ffUs3R}
